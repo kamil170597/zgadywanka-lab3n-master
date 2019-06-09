@@ -31,7 +31,7 @@ namespace GraGui
         }
 
         
-private void Losuj_Click(object sender, EventArgs e)
+        private void Losuj_Click(object sender, EventArgs e)
         {
             //Wczytaj zakres do losowania
             int a = int.Parse(textBoxod.Text);
@@ -42,7 +42,93 @@ private void Losuj_Click(object sender, EventArgs e)
             textBoxdo.Enabled = false;
             Losuj.Visible = false;
             //Wyswietl kolejne elementy formularza
+            Sprawdzanie_Box.Visible = true;
+            Poddanie.Visible = true;
+           
+            
 
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Poddanie_Click(object sender, EventArgs e)
+        {
+
+            string message = "Przegrałeś czy chcesz zagrać jeszcze raz ?";
+            string title = "PRZEGRANA";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.No)
+            {
+                this.Close();
+            }
+            else
+            {
+                NowaGra.Enabled = true;
+                textBoxdo.Clear();
+                textBoxod.Clear();
+                PodanaLiczba.Clear();
+                textBoxod.Enabled = true;
+                textBoxdo.Enabled = true;
+                groupBox1.Visible = false;
+                Losuj.Visible = true;
+                Sprawdzanie_Box.Visible = false;
+                //Application.Restart();
+            }
+
+
+        }
+
+        private void Sprawdz_Click_Click(object sender, EventArgs e)
+        {
+            komunikat.Visible = true;
+            int c = int.Parse(PodanaLiczba.Text);
+            if (Convert.ToString(g.Ocena(c)) == "ZaMalo")
+                komunikat.Text = "Za Mało";
+            else if (Convert.ToString(g.Ocena(c)) == "ZaDuzo")
+                komunikat.Text = "Za Dużo";
+            else
+            {
+                string message = $"Wygrałes czy chcesz zagrać jeszcze raz ? \n Ilość Ruchów: {Convert.ToString(g.LicznikRuchow - 1)}";
+                string title = "WYGRANA";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    NowaGra.Enabled = true;
+                    textBoxdo.Clear();
+                    textBoxod.Clear();
+                    PodanaLiczba.Clear();
+                    textBoxod.Enabled = true;
+                    textBoxdo.Enabled = true;
+                    groupBox1.Visible = false;
+                    Losuj.Visible = true;
+                    Sprawdzanie_Box.Visible = false;
+                    //Application.Restart();
+                }
+            }   
+        }
+
+        private void Sprawdzanie_Box_Enter(object sender, EventArgs e)
+        {
 
         }
     }

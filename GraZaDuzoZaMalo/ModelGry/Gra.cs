@@ -64,7 +64,7 @@ namespace ModelGry
             StanGry = State.Poddana;
         }
 
-        public static int Losuj(int min = 1, int max = 100)
+        public static int Losuj(int min, int max)
         {
             if (min > max)
             { //swap
