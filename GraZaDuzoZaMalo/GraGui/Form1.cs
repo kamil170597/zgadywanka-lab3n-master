@@ -33,17 +33,34 @@ namespace GraGui
         
         private void Losuj_Click(object sender, EventArgs e)
         {
-            //Wczytaj zakres do losowania
-            int a = int.Parse(textBoxod.Text);
-            int b = int.Parse(textBoxdo.Text);
-            //utworz gre
-            g = new Gra(a, b);
-            textBoxod.Enabled = false;
-            textBoxdo.Enabled = false;
-            Losuj.Visible = false;
-            //Wyswietl kolejne elementy formularza
-            Sprawdzanie_Box.Visible = true;
-            Poddanie.Visible = true;
+           
+           
+            
+
+            string test = textBoxod.Text;
+            string test2 = textBoxdo.Text;
+
+            if(string.IsNullOrEmpty(test) || string.IsNullOrEmpty(test2))
+            {
+                MessageBox.Show("Zakres musi zostać podany poprawnie");
+            }else
+            {
+                //Wczytaj zakres do losowania
+                int a = int.Parse(textBoxod.Text);
+                int b = int.Parse(textBoxdo.Text);
+                //utworz gre
+                g = new Gra(a, b);
+                textBoxod.Enabled = false;
+                textBoxdo.Enabled = false;
+                Losuj.Visible = false;
+                //Wyswietl kolejne elementy formularza
+                Sprawdzanie_Box.Visible = true;
+                Poddanie.Visible = true;
+
+            }
+           
+           
+          
            
             
 
@@ -96,35 +113,44 @@ namespace GraGui
         private void Sprawdz_Click_Click(object sender, EventArgs e)
         {
             komunikat.Visible = true;
-            int c = int.Parse(PodanaLiczba.Text);
-            if (Convert.ToString(g.Ocena(c)) == "ZaMalo")
-                komunikat.Text = "Za Mało";
-            else if (Convert.ToString(g.Ocena(c)) == "ZaDuzo")
-                komunikat.Text = "Za Dużo";
+
+            string test3 = PodanaLiczba.Text;
+            if (string.IsNullOrEmpty(test3))
+            {
+                MessageBox.Show("Musisz podać swoją propozycję");
+            }
             else
             {
-                string message = $"Wygrałes czy chcesz zagrać jeszcze raz ? \n Ilość Ruchów: {Convert.ToString(g.LicznikRuchow - 1)}";
-                string title = "WYGRANA";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                DialogResult result = MessageBox.Show(message, title, buttons);
-                if (result == DialogResult.No)
-                {
-                    this.Close();
-                }
+                int c = int.Parse(PodanaLiczba.Text);
+                if (Convert.ToString(g.Ocena(c)) == "ZaMalo")
+                    komunikat.Text = "Za Mało";
+                else if (Convert.ToString(g.Ocena(c)) == "ZaDuzo")
+                    komunikat.Text = "Za Dużo";
                 else
                 {
-                    NowaGra.Enabled = true;
-                    textBoxdo.Clear();
-                    textBoxod.Clear();
-                    PodanaLiczba.Clear();
-                    textBoxod.Enabled = true;
-                    textBoxdo.Enabled = true;
-                    groupBox1.Visible = false;
-                    Losuj.Visible = true;
-                    Sprawdzanie_Box.Visible = false;
-                    //Application.Restart();
+                    string message = $"Wygrałes czy chcesz zagrać jeszcze raz ? \n Ilość Ruchów: {Convert.ToString(g.LicznikRuchow - 1)}";
+                    string title = "WYGRANA";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result = MessageBox.Show(message, title, buttons);
+                    if (result == DialogResult.No)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        NowaGra.Enabled = true;
+                        textBoxdo.Clear();
+                        textBoxod.Clear();
+                        PodanaLiczba.Clear();
+                        textBoxod.Enabled = true;
+                        textBoxdo.Enabled = true;
+                        groupBox1.Visible = false;
+                        Losuj.Visible = true;
+                        Sprawdzanie_Box.Visible = false;
+                        //Application.Restart();
+                    }
                 }
-            }   
+            }
         }
 
         private void Sprawdzanie_Box_Enter(object sender, EventArgs e)
