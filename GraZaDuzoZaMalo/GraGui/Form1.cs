@@ -87,7 +87,7 @@ namespace GraGui
 
             string message = "Przegrałeś czy chcesz zagrać jeszcze raz ?";
             string title = "PRZEGRANA";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
             DialogResult result = MessageBox.Show(message, title, buttons);
             if (result == DialogResult.No)
             {
