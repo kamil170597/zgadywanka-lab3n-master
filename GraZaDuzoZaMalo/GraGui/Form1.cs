@@ -93,6 +93,10 @@ namespace GraGui
             {
                 this.Close();
             }
+            else if (result == DialogResult.Cancel)
+            {
+                System.Threading.Thread.Sleep(1);
+            }
             else
             {
                 NowaGra.Enabled = true;
