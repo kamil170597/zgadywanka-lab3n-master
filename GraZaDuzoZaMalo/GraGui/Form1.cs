@@ -132,7 +132,7 @@ namespace GraGui
                     komunikat.Text = "Za Dużo";
                 else
                 {
-                    string message = $"Wygrałes czy chcesz zagrać jeszcze raz ? \n Ilość Ruchów: {Convert.ToString(g.LicznikRuchow - 1)}";
+                    string message = $"Wygrałes czy chcesz zagrać jeszcze raz ? \n Ilość Ruchów: {Convert.ToString(g.LicznikRuchow - 1)}\n";
                     string title = "WYGRANA";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result = MessageBox.Show(message, title, buttons);
